@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ctb.mapper.BuyHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.ctb.model.BuyHistory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_open_id" property="userOpenId" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="card_number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="buy_date" property="buyDate" jdbcType="TIMESTAMP" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="request_times" property="requestimes" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_open_id, mobile, card_number, money, status, buy_date, order_id,request_times
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from oil_buy_history
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from oil_buy_history
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ctb.model.BuyHistory" >
+    insert into oil_buy_history (id, user_open_id, mobile, 
+      card_number, money, status, 
+      buy_date,order_id,request_times)
+    values (#{id,jdbcType=BIGINT}, #{userOpenId,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{cardNumber,jdbcType=VARCHAR}, #{money,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{buyDate,jdbcType=TIMESTAMP},#{orderId,jdbcType=BIGINT},#{requestTimes,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctb.model.BuyHistory" >
+    insert into oil_buy_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userOpenId != null" >
+        user_open_id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="cardNumber != null" >
+        card_number,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="buyDate != null" >
+        buy_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userOpenId != null" >
+        #{userOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="buyDate != null" >
+        #{buyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctb.model.BuyHistory" >
+    update oil_buy_history
+    <set >
+      <if test="userOpenId != null" >
+        user_open_id = #{userOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null" >
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="buyDate != null" >
+        buy_date = #{buyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctb.model.BuyHistory" >
+    update oil_buy_history
+    set user_open_id = #{userOpenId,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      card_number = #{cardNumber,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      buy_date = #{buyDate,jdbcType=TIMESTAMP},
+      order_id = #{orderId,jdbcType=BIGINT},
+      request_times = #{requestTimes,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="failedOrders" >
+    select
+    <include refid="Base_Column_List" />
+    from oil_buy_history
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+</mapper>

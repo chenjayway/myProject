@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ctb.mapper.OilPriceMapper" >
+  <resultMap id="BaseResultMap" type="com.ctb.model.OilPrice" >
+    <id column="price_id" property="priceId" jdbcType="INTEGER" />
+    <result column="price_city" property="priceCity" jdbcType="VARCHAR" />
+    <result column="price_ninety_gasoline" property="priceNinetyGasoline" jdbcType="VARCHAR" />
+    <result column="price_ninety_three_gasoline" property="priceNinetyThreeGasoline" jdbcType="VARCHAR" />
+    <result column="price_ninety_seven_gasoline" property="priceNinetySevenGasoline" jdbcType="VARCHAR" />
+    <result column="price_zero_diesel" property="priceZeroDiesel" jdbcType="VARCHAR" />
+    <result column="price_source" property="priceSource" jdbcType="VARCHAR" />
+    <result column="price_insert_time" property="priceInsertTime" jdbcType="TIMESTAMP" />
+    <result column="price_ninety_five_gasoline" property="priceNinetyFiveGasoline" jdbcType="VARCHAR" />
+    <result column="price_ninety_two_gasoline" property="priceNinetyTwoGasoline" jdbcType="VARCHAR" />
+    <result column="price_eighty_nine_gasoline" property="priceEightyNineGasoline" jdbcType="VARCHAR" />
+    <result column="site_up_time" property="siteUpTime" jdbcType="TIMESTAMP" />
+    <result column="price_trend" property="priceTrend" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    price_id, price_city, price_ninety_gasoline, price_ninety_three_gasoline, price_ninety_seven_gasoline, 
+    price_zero_diesel, price_source, price_insert_time, price_ninety_five_gasoline, price_ninety_two_gasoline, 
+    price_eighty_nine_gasoline, site_up_time, price_trend
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from oil_price
+    where price_id = #{priceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from oil_price
+    where price_id = #{priceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ctb.model.OilPrice" >
+    insert into oil_price (price_id, price_city, price_ninety_gasoline, 
+      price_ninety_three_gasoline, price_ninety_seven_gasoline, 
+      price_zero_diesel, price_source, price_insert_time, 
+      price_ninety_five_gasoline, price_ninety_two_gasoline, 
+      price_eighty_nine_gasoline, site_up_time, 
+      price_trend)
+    values (#{priceId,jdbcType=INTEGER}, #{priceCity,jdbcType=VARCHAR}, #{priceNinetyGasoline,jdbcType=VARCHAR}, 
+      #{priceNinetyThreeGasoline,jdbcType=VARCHAR}, #{priceNinetySevenGasoline,jdbcType=VARCHAR}, 
+      #{priceZeroDiesel,jdbcType=VARCHAR}, #{priceSource,jdbcType=VARCHAR}, #{priceInsertTime,jdbcType=TIMESTAMP}, 
+      #{priceNinetyFiveGasoline,jdbcType=VARCHAR}, #{priceNinetyTwoGasoline,jdbcType=VARCHAR}, 
+      #{priceEightyNineGasoline,jdbcType=VARCHAR}, #{siteUpTime,jdbcType=TIMESTAMP}, 
+      #{priceTrend,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctb.model.OilPrice" >
+    insert into oil_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="priceId != null" >
+        price_id,
+      </if>
+      <if test="priceCity != null" >
+        price_city,
+      </if>
+      <if test="priceNinetyGasoline != null" >
+        price_ninety_gasoline,
+      </if>
+      <if test="priceNinetyThreeGasoline != null" >
+        price_ninety_three_gasoline,
+      </if>
+      <if test="priceNinetySevenGasoline != null" >
+        price_ninety_seven_gasoline,
+      </if>
+      <if test="priceZeroDiesel != null" >
+        price_zero_diesel,
+      </if>
+      <if test="priceSource != null" >
+        price_source,
+      </if>
+      <if test="priceInsertTime != null" >
+        price_insert_time,
+      </if>
+      <if test="priceNinetyFiveGasoline != null" >
+        price_ninety_five_gasoline,
+      </if>
+      <if test="priceNinetyTwoGasoline != null" >
+        price_ninety_two_gasoline,
+      </if>
+      <if test="priceEightyNineGasoline != null" >
+        price_eighty_nine_gasoline,
+      </if>
+      <if test="siteUpTime != null" >
+        site_up_time,
+      </if>
+      <if test="priceTrend != null" >
+        price_trend,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="priceId != null" >
+        #{priceId,jdbcType=INTEGER},
+      </if>
+      <if test="priceCity != null" >
+        #{priceCity,jdbcType=VARCHAR},
+      </if>
+      <if test="priceNinetyGasoline != null" >
+        #{priceNinetyGasoline,jdbcType=VARCHAR},
+      </if>
+      <if test="priceNinetyThreeGasoline != null" >
+        #{priceNinetyThreeGasoline,jdbcType=VARCHAR},
+      </if>
+      <if test="priceNinetySevenGasoline != null" >
+        #{priceNinetySevenGasoline,jdbcType=VARCHAR},
+      </if>
+      <if test="priceZeroDiesel != null" >
+        #{priceZeroDiesel,jdbcType=VARCHAR},
+      </if>
+      <if test="priceSource != null" >
+        #{priceSource,jdbcType=VARCHAR},
+      </if>
+      <if test="priceInsertTime != null" >
+        #{priceInsertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priceNinetyFiveGasoline != null" >
+        #{priceNinetyFiveGasoline,jdbcType=VARCHAR},
+      </if>
+      <if test="priceNinetyTwoGasoline != null" >
+        #{priceNinetyTwoGasoline,jdbcType=VARCHAR},
+      </if>
+      <if test="priceEightyNineGasoline != null" >
+        #{priceEightyNineGasoline,jdbcType=VARCHAR},
+      </if>
+      <if test="siteUpTime != null" >
+        #{siteUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priceTrend != null" >
+        #{priceTrend,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctb.model.OilPrice" >
+    update oil_price
+    <set >
+      <if test="priceCity != null" >
+        price_city = #{priceCity,jdbcType=VARCHAR},
+      </if>
+      <if test="priceNinetyGasoline != null" >
+        price_ninety_gasoline = #{priceNinetyGasoline,jdbcType=VARCHAR},
+      </if>
+      <if test="priceNinetyThreeGasoline != null" >
+        price_ninety_three_gasoline = #{priceNinetyThreeGasoline,jdbcType=VARCHAR},
+      </if>
+      <if test="priceNinetySevenGasoline != null" >
+        price_ninety_seven_gasoline = #{priceNinetySevenGasoline,jdbcType=VARCHAR},
+      </if>
+      <if test="priceZeroDiesel != null" >
+        price_zero_diesel = #{priceZeroDiesel,jdbcType=VARCHAR},
+      </if>
+      <if test="priceSource != null" >
+        price_source = #{priceSource,jdbcType=VARCHAR},
+      </if>
+      <if test="priceInsertTime != null" >
+        price_insert_time = #{priceInsertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priceNinetyFiveGasoline != null" >
+        price_ninety_five_gasoline = #{priceNinetyFiveGasoline,jdbcType=VARCHAR},
+      </if>
+      <if test="priceNinetyTwoGasoline != null" >
+        price_ninety_two_gasoline = #{priceNinetyTwoGasoline,jdbcType=VARCHAR},
+      </if>
+      <if test="priceEightyNineGasoline != null" >
+        price_eighty_nine_gasoline = #{priceEightyNineGasoline,jdbcType=VARCHAR},
+      </if>
+      <if test="siteUpTime != null" >
+        site_up_time = #{siteUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priceTrend != null" >
+        price_trend = #{priceTrend,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where price_id = #{priceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctb.model.OilPrice" >
+    update oil_price
+    set price_city = #{priceCity,jdbcType=VARCHAR},
+      price_ninety_gasoline = #{priceNinetyGasoline,jdbcType=VARCHAR},
+      price_ninety_three_gasoline = #{priceNinetyThreeGasoline,jdbcType=VARCHAR},
+      price_ninety_seven_gasoline = #{priceNinetySevenGasoline,jdbcType=VARCHAR},
+      price_zero_diesel = #{priceZeroDiesel,jdbcType=VARCHAR},
+      price_source = #{priceSource,jdbcType=VARCHAR},
+      price_insert_time = #{priceInsertTime,jdbcType=TIMESTAMP},
+      price_ninety_five_gasoline = #{priceNinetyFiveGasoline,jdbcType=VARCHAR},
+      price_ninety_two_gasoline = #{priceNinetyTwoGasoline,jdbcType=VARCHAR},
+      price_eighty_nine_gasoline = #{priceEightyNineGasoline,jdbcType=VARCHAR},
+      site_up_time = #{siteUpTime,jdbcType=TIMESTAMP},
+      price_trend = #{priceTrend,jdbcType=VARCHAR}
+    where price_id = #{priceId,jdbcType=INTEGER}
+  </update>
+  <select id="getNowPriceByCityCode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from oil_price
+    where  price_city = #{priceCity,jdbcType=VARCHAR} and price_insert_time &gt; #{priceInsertTime,jdbcType=TIMESTAMP}
+
+  </select>
+</mapper>

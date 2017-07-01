@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ctb.mapper.RecordInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ctb.model.RecordInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="card_num" property="cardNum" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="INTEGER" />
+    <result column="success_flag" property="successFlag" jdbcType="INTEGER" />
+    <result column="pay_amount" property="payAmount" jdbcType="DECIMAL" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="pay_no" property="payNo" jdbcType="VARCHAR" />
+    <result column="ex_order_id" property="exOrderId" jdbcType="VARCHAR" />
+    <result column="order_amount" property="orderAmount" jdbcType="DECIMAL" />
+    <result column="discount_amount" property="discountAmount" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="error_msg" property="errorMsg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_phone, card_num, channel, order_id, code, success_flag, pay_amount, order_status, 
+    pay_no, ex_order_id, order_amount, discount_amount, create_time, error_msg
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from oil_cxy_record_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from oil_cxy_record_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ctb.model.RecordInfo" >
+    insert into oil_cxy_record_info (id, user_phone, card_num, 
+      channel, order_id, code, 
+      success_flag, pay_amount, order_status, 
+      pay_no, ex_order_id, order_amount, 
+      discount_amount, create_time, error_msg
+      )
+    values (#{id,jdbcType=BIGINT}, #{userPhone,jdbcType=VARCHAR}, #{cardNum,jdbcType=VARCHAR}, 
+      #{channel,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{code,jdbcType=INTEGER}, 
+      #{successFlag,jdbcType=INTEGER}, #{payAmount,jdbcType=DECIMAL}, #{orderStatus,jdbcType=INTEGER}, 
+      #{payNo,jdbcType=VARCHAR}, #{exOrderId,jdbcType=VARCHAR}, #{orderAmount,jdbcType=DECIMAL}, 
+      #{discountAmount,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{errorMsg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctb.model.RecordInfo" >
+    insert into oil_cxy_record_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="cardNum != null" >
+        card_num,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="successFlag != null" >
+        success_flag,
+      </if>
+      <if test="payAmount != null" >
+        pay_amount,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="payNo != null" >
+        pay_no,
+      </if>
+      <if test="exOrderId != null" >
+        ex_order_id,
+      </if>
+      <if test="orderAmount != null" >
+        order_amount,
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="errorMsg != null" >
+        error_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNum != null" >
+        #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="successFlag != null" >
+        #{successFlag,jdbcType=INTEGER},
+      </if>
+      <if test="payAmount != null" >
+        #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="payNo != null" >
+        #{payNo,jdbcType=VARCHAR},
+      </if>
+      <if test="exOrderId != null" >
+        #{exOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountAmount != null" >
+        #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorMsg != null" >
+        #{errorMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctb.model.RecordInfo" >
+    update oil_cxy_record_info
+    <set >
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNum != null" >
+        card_num = #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="successFlag != null" >
+        success_flag = #{successFlag,jdbcType=INTEGER},
+      </if>
+      <if test="payAmount != null" >
+        pay_amount = #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="payNo != null" >
+        pay_no = #{payNo,jdbcType=VARCHAR},
+      </if>
+      <if test="exOrderId != null" >
+        ex_order_id = #{exOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        order_amount = #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorMsg != null" >
+        error_msg = #{errorMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctb.model.RecordInfo" >
+    update oil_cxy_record_info
+    set user_phone = #{userPhone,jdbcType=VARCHAR},
+      card_num = #{cardNum,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      code = #{code,jdbcType=INTEGER},
+      success_flag = #{successFlag,jdbcType=INTEGER},
+      pay_amount = #{payAmount,jdbcType=DECIMAL},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      pay_no = #{payNo,jdbcType=VARCHAR},
+      ex_order_id = #{exOrderId,jdbcType=VARCHAR},
+      order_amount = #{orderAmount,jdbcType=DECIMAL},
+      discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      error_msg = #{errorMsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

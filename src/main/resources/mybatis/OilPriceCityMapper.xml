@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ctb.mapper.OilPriceCityMapper" >
+  <resultMap id="BaseResultMap" type="com.ctb.model.OilPriceCity" >
+    <id column="price_city_id" property="priceCityId" jdbcType="INTEGER" />
+    <result column="price_city_name" property="priceCityName" jdbcType="VARCHAR" />
+    <result column="price_city_name_first_letter" property="priceCityNameFirstLetter" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    price_city_id, price_city_name, price_city_name_first_letter
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from oil_price_city
+    where price_city_id = #{priceCityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from oil_price_city
+    where price_city_id = #{priceCityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ctb.model.OilPriceCity" >
+    insert into oil_price_city (price_city_id, price_city_name, price_city_name_first_letter
+      )
+    values (#{priceCityId,jdbcType=INTEGER}, #{priceCityName,jdbcType=VARCHAR}, #{priceCityNameFirstLetter,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctb.model.OilPriceCity" >
+    insert into oil_price_city
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="priceCityId != null" >
+        price_city_id,
+      </if>
+      <if test="priceCityName != null" >
+        price_city_name,
+      </if>
+      <if test="priceCityNameFirstLetter != null" >
+        price_city_name_first_letter,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="priceCityId != null" >
+        #{priceCityId,jdbcType=INTEGER},
+      </if>
+      <if test="priceCityName != null" >
+        #{priceCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="priceCityNameFirstLetter != null" >
+        #{priceCityNameFirstLetter,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctb.model.OilPriceCity" >
+    update oil_price_city
+    <set >
+      <if test="priceCityName != null" >
+        price_city_name = #{priceCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="priceCityNameFirstLetter != null" >
+        price_city_name_first_letter = #{priceCityNameFirstLetter,jdbcType=CHAR},
+      </if>
+    </set>
+    where price_city_id = #{priceCityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctb.model.OilPriceCity" >
+    update oil_price_city
+    set price_city_name = #{priceCityName,jdbcType=VARCHAR},
+      price_city_name_first_letter = #{priceCityNameFirstLetter,jdbcType=CHAR}
+    where price_city_id = #{priceCityId,jdbcType=INTEGER}
+  </update>
+  <select id="getAllCitys" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from oil_price_city
+  </select>
+</mapper>

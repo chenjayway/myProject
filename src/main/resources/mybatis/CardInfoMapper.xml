@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ctb.mapper.CardInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ctb.model.CardInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="oil_card_number" property="oilCardNumber" jdbcType="VARCHAR" />
+    <result column="oil_card_status" property="oilCardStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mobile, oil_card_number, oil_card_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from oil_card_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from oil_card_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ctb.model.CardInfo" >
+    insert into oil_card_info (id, mobile, oil_card_number, 
+      oil_card_status)
+    values (#{id,jdbcType=BIGINT}, #{mobile,jdbcType=VARCHAR}, #{oilCardNumber,jdbcType=VARCHAR}, 
+      #{oilCardStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctb.model.CardInfo" >
+    insert into oil_card_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="oilCardNumber != null" >
+        oil_card_number,
+      </if>
+      <if test="oilCardStatus != null" >
+        oil_card_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="oilCardNumber != null" >
+        #{oilCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="oilCardStatus != null" >
+        #{oilCardStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctb.model.CardInfo" >
+    update oil_card_info
+    <set >
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="oilCardNumber != null" >
+        oil_card_number = #{oilCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="oilCardStatus != null" >
+        oil_card_status = #{oilCardStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctb.model.CardInfo" >
+    update oil_card_info
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      oil_card_number = #{oilCardNumber,jdbcType=VARCHAR},
+      oil_card_status = #{oilCardStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
